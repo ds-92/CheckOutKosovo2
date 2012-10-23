@@ -1,12 +1,15 @@
 package com.check.out.kosovo;
 
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 public class Home extends MapActivity {
 	final int LIST_MENU = Menu.FIRST + 1;
@@ -15,10 +18,17 @@ public class Home extends MapActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
         MapView mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
+        mapView.getController().setZoom(14);
+        int latitude = (int)(42.673871 * 1E6);
+        int longitude = (int)(21.166159 * 1E6);
+        mapView.getController().setCenter(new GeoPoint(latitude, longitude));
     }
+    
+    
 
     public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {

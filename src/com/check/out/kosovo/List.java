@@ -7,18 +7,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 public class List extends ListActivity {
-	
+
 	ArrayList<ObjectList> lista = new ArrayList<ObjectList>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_list);
-		lista.add(new ObjectList("Hajdar", "Dushi", "Haker"));
+		lista.add(new ObjectList("Hajdar", "Dushi"));
         setListAdapter(new PersonCustomAdapter());
 	}
 
@@ -34,7 +36,7 @@ public class List extends ListActivity {
 			ViewHolder holder = null;
 			View row = convertView;
 			final int _position = position;
-			
+
 			if (row == null) {
 				LayoutInflater inflater = getLayoutInflater();
 				row = inflater.inflate(R.layout.activity_row, parent, false);
@@ -46,7 +48,6 @@ public class List extends ListActivity {
 
 			holder.getTitle().setText(lista.get(position).getTitle());
 			holder.getDescription().setText(lista.get(position).getDescription());
-			holder.getDistance().setText(lista.get(position).getDistance());
 
 			row.setOnClickListener(new View.OnClickListener() {
 
@@ -54,9 +55,8 @@ public class List extends ListActivity {
 					Toast.makeText(List.this, lista.get(_position).getTitle(), Toast.LENGTH_LONG).show();
 				}
 			});
-						
+
 			return row;
-		}
-    			
+		}	
     }
 }

@@ -1,13 +1,14 @@
 package com.check.out.kosovo;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ViewHolder {
 	View base;
+	ImageView pic;
 	TextView title;
 	TextView description;
-	TextView distance;
 
 	public ViewHolder(View base) {
 		this.base = base;
@@ -28,10 +29,11 @@ public class ViewHolder {
 		return description;
 	}
 
-	public TextView getDistance() {
-		if (distance == null) 
-			distance = (TextView) base.findViewById(R.id.distance);
+	public ImageView getPic()
+	{
+		if (pic == null)
+			pic = (ImageView) base.findViewById(R.id.pic);
 
-		return distance;
+		return pic;
 	}
 }
