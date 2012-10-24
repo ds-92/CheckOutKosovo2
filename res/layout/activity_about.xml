@@ -8,7 +8,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/hello_world"
+        android:lines="8"
+        android:text="Kushtrim Mahmuti \n kushtrimmahmuti@gmail.com \n Edonit Rexhepi \n edoniti@gmail.com \n Shpend s \n shpend@slash.al \n Betim Mehmeti \n betimmehmeti@gmail.com"
         tools:context=".Home" />
 
 </RelativeLayout>
