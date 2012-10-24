@@ -3,15 +3,18 @@ package com.check.out.kosovo;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 public class List extends ListActivity {
+	Database db;
 
 	ArrayList<ObjectList> lista = new ArrayList<ObjectList>();
 
@@ -20,7 +23,19 @@ public class List extends ListActivity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_list);
-		lista.add(new ObjectList("Hajdar", "Dushi"));
+		
+		db = new Database(this);
+		SQLiteDatabase d = db.getReadableDatabase();
+
+		Cursor c = d.rawQuery("SELECT title, description, category FROM tblLocation", null);
+
+		c.moveToFirst();
+
+		while(!c.isAfterLast())
+		{
+			lista.add(new ObjectList(c.getString(0), c.getString(1), c.getString(2)));
+			c.moveToNext();
+		}
         setListAdapter(new PersonCustomAdapter());
 	}
 
@@ -32,10 +47,10 @@ public class List extends ListActivity {
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			ViewHolder holder = null;
 			View row = convertView;
-			final int _position = position;
+			//final int _position = position;
 
 			if (row == null) {
 				LayoutInflater inflater = getLayoutInflater();
@@ -49,10 +64,16 @@ public class List extends ListActivity {
 			holder.getTitle().setText(lista.get(position).getTitle());
 			holder.getDescription().setText(lista.get(position).getDescription());
 
+			if (lista.get(position).getCategory().equalsIgnoreCase("Station"))
+				holder.getPic().setImageResource(R.drawable.station);
+
 			row.setOnClickListener(new View.OnClickListener() {
 
 				public void onClick(View v) {
-					Toast.makeText(List.this, lista.get(_position).getTitle(), Toast.LENGTH_LONG).show();
+					Intent i = new Intent(List.this, Details.class);
+					i.putExtra("title", lista.get(position).getTitle());
+					i.putExtra("description", lista.get(position).getDescription());
+					startActivity(i);
 				}
 			});
 

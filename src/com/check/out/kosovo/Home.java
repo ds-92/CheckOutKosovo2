@@ -6,7 +6,6 @@ import com.google.android.maps.MapView;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -27,8 +26,6 @@ public class Home extends MapActivity {
         int longitude = (int)(21.166159 * 1E6);
         mapView.getController().setCenter(new GeoPoint(latitude, longitude));
     }
-    
-    
 
     public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {

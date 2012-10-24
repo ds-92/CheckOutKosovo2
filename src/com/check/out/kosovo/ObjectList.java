@@ -3,13 +3,15 @@ package com.check.out.kosovo;
 public class ObjectList {
 	String title;
 	String description;
+	String category;
 
 	public ObjectList(){}
 
-	public ObjectList(String title, String description) {
+	public ObjectList(String title, String description, String category) {
 		super();
 		this.title = title;
 		this.description = description;
+		this.category = category;
 	}
 
 	public String getTitle() {
@@ -23,5 +25,11 @@ public class ObjectList {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }

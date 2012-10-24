@@ -13,7 +13,7 @@ public class ViewHolder {
 	public ViewHolder(View base) {
 		this.base = base;
 	}
-	
+
 	public TextView getTitle()
 	{
 		if (title == null)
